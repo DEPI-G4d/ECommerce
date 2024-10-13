@@ -14,5 +14,8 @@ namespace ECommerce.Entities.Models
         public string Name { get; set; }
         public string Address { get; set; }
         public string City { get; set; }
+
+        [Timestamp] // This attribute is important for concurrency handling
+        public byte[] RowVersion { get; set; }
     }
 }
