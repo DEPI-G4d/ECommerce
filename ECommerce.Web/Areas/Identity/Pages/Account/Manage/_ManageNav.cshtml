@@ -3,13 +3,121 @@
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }
-<ul class="nav nav-pills flex-column">
-    <li class="nav-item"><a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">Profile</a></li>
-    <li class="nav-item"><a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">Email</a></li>
-    <li class="nav-item"><a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">Password</a></li>
-    @if (hasExternalLogins)
-    {
-        <li id="external-logins" class="nav-item"><a id="external-login" class="nav-link @ManageNavPages.ExternalLoginsNavClass(ViewContext)" asp-page="./ExternalLogins">External logins</a></li>
-    }    
-    <li class="nav-item"><a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">Personal data</a></li>
-</ul>
+
+<!-- Custom styles -->
+<style>
+    /* Professional color scheme */
+    body {
+        background-color: #f5f7fa; /* Light background for the entire page */
+        font-family: 'Arial', sans-serif;
+    }
+
+    .page-container {
+        max-width: 1000px;
+min-width: 170px;
+        margin: 0 auto;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for modern look */
+    }
+
+    .header {
+        display: flex;
+        align-items: center;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+        
+
+        .header h2 {
+            color: #333;
+            font-weight: bold;
+            padding: 20px ;
+        }
+
+    .nav-pills {
+        background-color: #f9fafb; /* Light background for the sidebar */
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+    .nav-item {
+        margin-bottom: 10px; /* Add space between nav items */
+    }
+
+    .nav-link {
+        color: #555; /* Text color */
+        font-weight: 500;
+        padding: 12px;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+    }
+
+        .nav-link.active {
+            background-color: #007bff; /* Active link color */
+            color: white;
+        }
+
+        .nav-link:hover {
+            background-color: #eef4ff; /* Subtle hover effect */
+            color: #007bff;
+        }
+
+        .nav-link i {
+            margin-right: 8px; /* Space for icons */
+        }
+
+    #external-logins {
+        background-color: #e9f0ff;
+        border-left: 4px solid #007bff; /* Highlight external logins section */
+    }
+</style>
+
+
+<div class="page-container">
+    <div class="header">
+        <h2>Edit Profile</h2>
+    </div>
+
+    <!-- Navigation Menu -->
+    <ul class="nav nav-pills flex-column mt-4">
+        <li class="nav-item">
+            <a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">
+                <i class="bi bi-person"></i> <!-- Profile Icon -->
+                Profile
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">
+                <i class="bi bi-envelope"></i> <!-- Email Icon -->
+                Email
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">
+                <i class="bi bi-lock"></i> <!-- Password Icon -->
+                Password
+            </a>
+        </li>
+        @if (hasExternalLogins)
+        {
+            <li id="external-logins" class="nav-item">
+                <a id="external-login" class="nav-link @ManageNavPages.ExternalLoginsNavClass(ViewContext)" asp-page="./ExternalLogins">
+                    <i class="bi bi-box-arrow-in-right"></i> <!-- External Login Icon -->
+                    External logins
+                </a>
+            </li>
+        }
+        <li class="nav-item">
+            <a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">
+                <i class="bi bi-person-badge"></i> <!-- Personal Data Icon -->
+                Personal data
+            </a>
+        </li>
+    </ul>
+</div>
+
+<!-- Bootstrap CSS and Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1MaT23G/7bhc5gW" crossorigin="anonymous">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
